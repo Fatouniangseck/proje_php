@@ -1,7 +1,7 @@
--- Active: 1738839130594@@127.0.0.1@3306@gestion_de_reservation
 
-create database gestion_de_reservation;
-use gestion_de_reservation;
+
+create database gestionReserve;
+use gestionReserve;
 
 create table personne(
     idPersonne int primary key auto_increment,
@@ -31,9 +31,10 @@ create table materiel(
     nomMateriel varchar(30),
     modele VARCHAR(80),
     marque VARCHAR(80),
-    quantite int
+    quantite int,
+    disponibilite  int
 );
-alter table materiel add disponibilite int;
+
 
 
 
@@ -41,12 +42,10 @@ create table salle(
     idSalle int primary key auto_increment,
     nomSalle varchar(50),
     capacite int, 
-    disponiblite int
+    disponibilite int
      
  );
 
- ALTER TABLE salle  
-RENAME COLUMN disponiblite TO disponibilite;  
 
 
 create table reserverMateriel(
@@ -55,6 +54,7 @@ create table reserverMateriel(
     heureRS time,
     FK_materiel int,
     FK_personne int,
+    dateFin date,
   foreign key (FK_personne) references personne(idPersonne),
   foreign key (FK_materiel) references materiel(idMateriel)
 );
@@ -65,17 +65,13 @@ create table reserverSalle(
     dateRS date,
     heureRS time,
     FK_personne int,
-    FK_Salle int, 
+    FK_Salle int,
+    dateFin date,
     foreign key (FK_personne) references personne(idpersonne),
     foreign key (FK_salle) references salle(idSalle)
 );
-alter table reserversalle RENAME COLUMN numSalle to numReservation;
 
--- ici j'ajoute une colonne dateFin dans les deux tables reserversalle et reserverMateriel
 
-ALTER TABLE reserverMateriel ADD dateFin DATE;
-ALTER TABLE reserverSalle ADD dateFin DATE;
-SELECT * FROM personne ;
 
 
 -- inserer dans  la table salle
@@ -109,26 +105,3 @@ SELECT * FROM reservermateriel;
 
 select p.* from personne p join reserversalle rs on p.`idPersonne` = rs.`FK_personne` 
 join salle s on s.`idSalle` = rs.`FK_Salle`; 
-
-select * from personne;
-
-select * from reserversalle;
-
-delete from reserversalle where `FK_personne` = 12;
-
-select * from salle;
-
-update salle set disponibilite = 1 where idSalle >0 ;
-update salle set disponibilite = 1 where idSalle >0 ;
-
-update reserversalle set `FK_personne` = 1 where `numReservation` =1;
-
-show tables;
-select * FROM reservermateriel;
-TRUNCATE Table reserversalle; 
-
-select * from reservermateriel;
-
-delete from reservermateriel;
-
-select * from materiel;

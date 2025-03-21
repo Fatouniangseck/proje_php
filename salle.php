@@ -20,7 +20,12 @@
     // on vérifie si les champs sont remplis  
     if (isset($_POST["valider"])) {
         extract($_POST);
-        // on récupère les données du formulaire  
+
+
+     
+
+
+
 
         // Récupérer l'ID de l'enseignant de la session 
         //session_start(); 
@@ -54,13 +59,15 @@
 
             header("location:voirReserves.php?SRV=Réservation effectuée avec succès !");
             exit();
+        }
     } else {
         header("location:salle.php?MRE=Erreur lors de la réservation de la salle !");
         exit();
-    }
+    
     } catch(PDOException $e) {
         echo "Erreur  lors de la reservation ! : ". $e->getMessage();
     }
+
 
 }
 
@@ -98,6 +105,10 @@
         <?php } ?>
         <?php if (isset($_GET['MRV'])) { ?>
             <div class="text-center alert alert-success" role="alert"><?php echo $_GET['MRV']; ?></div>
+        <?php } ?>
+
+        <?php if (isset($_GET['rep'])) { ?>
+            <div class="text-center alert alert-danger" role="alert"><?php echo $_GET['rep']; ?></div>
         <?php } ?>
 
         <form class="container" method="POST" action="">

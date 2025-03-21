@@ -1,7 +1,7 @@
 <?php
 
     try {
-        $con=new PDO('mysql:host=localhost;dbname=gestion_de_reservation','root','passer');
+        $con=new PDO('mysql:host=localhost;dbname=gestionReserve','root','');
     } catch (PDOException $er) {
         echo"Erreur de connection !".$er->getMessage();
     }
