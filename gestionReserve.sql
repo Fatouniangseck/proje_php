@@ -105,3 +105,29 @@ SELECT * FROM reservermateriel;
 
 select p.* from personne p join reserversalle rs on p.`idPersonne` = rs.`FK_personne` 
 join salle s on s.`idSalle` = rs.`FK_Salle`; 
+<<<<<<< HEAD:gestionReserve.sql
+=======
+
+select * from personne;
+
+select * from reserversalle;
+
+delete from reserversalle where `FK_personne` = 12;
+
+select * from salle;
+
+update salle set disponibilite = 1 where idSalle >0 ;
+update salle set disponibilite = 1 where idSalle >0 ;
+
+
+
+show tables;
+select * FROM reservermateriel;
+TRUNCATE Table reserversalle; 
+
+select * from reservermateriel;
+
+
+
+select * from salle;
+>>>>>>> ab71e90a7278aa38cf938a4b79f7201d333569f9:gestion_de_reservation.sql
